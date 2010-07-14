@@ -1,6 +1,6 @@
 = Calculated
 
-Calculated allows you to interact with the "CarbonCalculated API"[http://www.carboncalculated.com/platform] in 
+Calculated allows you to interact with the CarbonCalculated API http://www.carboncalculated.com/platform in 
 a ruby way.
 
 "The Carbon Calculated platform is a freely accessible aggregation system containing up to the minute data on carbon emissions and emission calculation"
