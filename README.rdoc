@@ -1,0 +1,117 @@
+== Calculated
+
+Calculated allows you to interact with the "CarbonCalculated API"[http://www.carboncalculated.com/platform] in 
+a ruby way.
+
+"The Carbon Calculated platform is a freely accessible aggregation system containing up to the minute data on carbon emissions and emission calculation"
+
+* Idiomatic Ruby
+* Concrete classes and methods modelling CarbonCalculated data
+
+== Getting Started
+
+Get An API KEY
+  
+  contact support@carboncalculated.com 
+
+You can install it as:
+
+  sudo gem install calculated (dont use sudo if using RVM)
+
+== Creating A Session
+  
+    @session = Calculated::Session.create(:api_key => "your_api_key")
+
+== Overwriting defaults
+
+These are the defaults
+
+    caching                    # => true (boolean)
+    expires_in                 # => 60*60*24 (seconds)
+    cache                      # => Moneta::Memory.new "(Moneta Supported Cache)"[http://github.com/wycats/moneta]
+    server                     # => "api.carboncalculated.com" (string)
+    api_version                #=>  "v1" (string)
+    logging                    # => true (boolean)
+    
+This is overriding the defaults
+
+    @session = Calculated::Session.create(
+      :api_key => "your_api_key", 
+      :cache => Moneta::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'], :bucket => 'carbon')
+      :expires_in => 60*60*24*14
+    )
+    
+    This has created a session with S3 Moneta cache that expires in 14 days
+    
+== Basic Usage
+
+Via using the "CarbonCalculated Browser"["http://browswer.carboncalculated.com"] you can easily see what is available for you to interact with in terms of 
+data and calculations;
+
+Now that you have a session you can call methods on the session to interact with carbon calculated api
+
+*Example
+
+Very simple materials Calculator
+
+Lets first got to the calculator on the browser "click here to see what I mean"["http://browser.carboncalculated.com/calculators/4bab7e4ff78b122cdd000004/computations/4bab7e64f78b122cdd000005"]
+
+    @answer = @session.answer_from_computation("4bab7e64f78b122cdd000005", {"material_category"=>"4bf42d8046a95925b5000efb", "type_of_material"=>"4bf42d8046a95925b5000f40", "material"=>"4bf42d8046a95925b5000f2a", "amount_of_material"=>"10", "formula_input_name"=>"emissions_by_kg"})
+    @answer.calculations["co2"]["value"]
+    
+    OR
+    
+    @answer = @session.answer_from_calculator("4bab7e4ff78b122cdd000004", {"material_category"=>"4bf42d8046a95925b5000efb", "type_of_material"=>"4bf42d8046a95925b5000f40", "material"=>"4bf42d8046a95925b5000f2a", "amount_of_material"=>"10", "formula_input_name"=>"emissions_by_kg"})
+    @answer.calculations["co2"]["value"]
+    
+    This will return a Calculated::Models::Answer Object
+    
+    The reason that you can get an answer from either a calculator or a computation is the power of the validations; its cool
+    trust me.
+    
+== Object Template Api
+
+A Object Template is a template for the building of generic objects; these contain information about what
+all the object for the object template should contain; as well as getting relatable categories which can be 
+used to filter to specific generic objects which you can then later be used in answer calls
+
+  @session.object_templates  # returns an Array of ObjectTemplate Objects
+  
+  @session.generic_objects_for_object_template("car")  # returns an ObjectTemplate Object with paginate GenericObjects
+  
+  params can be given for pagination
+  
+  @session.object_templates(:page => 50, :per_page => 3)
+  @session.generic_objects_for_object_template("car", :page => 50, :per_page => 3)
+  
+  
+  # Getting object template with its relatable categories
+  # this will return ObjectTemplate with Relatable Category Objects
+  @object_template = @session.relatable_categories_for_object_template("car", "manufacture")
+  @object_template.relatable_categories[0].name
+  @object_template.relatable_categories[0].relatable_categories
+  
+  # yes relatable category know about other ones very cool when building "successive drop downs"[http://blog.carboncalculated.com/2010/06/16/creating-successive-drop-downs/]
+    
+== Answer Object
+  
+  #   answer.calculations["co2"]["value"] == 10
+  #   answer.calculations["co2"]["units"] == "kg"
+  #
+  property :calculations # [Hash]
+  property :object_references # [Hash]
+  property :used_global_computations # [Hash]
+  property :calculator_id # [String]
+  property :computation_id # [String]
+  property :answer_set_id # [String]
+  property :source # [Calculated::Models::Source]
+  property :errors # [Hash]
+
+== Relatable Categories
+
+== Bugs and Feedback
+
+If you discover any bugs or want to drop a line
+
+Copyright (c) 2010 Richard Hooker http://blog.carboncalculated.com
+See the attached MIT License.
