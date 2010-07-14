@@ -123,15 +123,15 @@ A Generic Object represents and object that is used in computations OR calculato
 need at least one object to talk about; The "formula_inputs" of an object are the values that are used 
 in formulas and can be versioned to specific times for equations that change over time.
 
-This is a list of car for instance "CLICK ME"[http://browser.carboncalculated.com/object_templates/car/generic_objects]
+This is a list of car for instance CLICK http://browser.carboncalculated.com/object_templates/car/generic_objects
 
 Finding and using generic objects is a major part of the platform apart from the actual calculations themselves
   
-  # Finding general generic objects
+  # Finding generic objects
   @generic_objects = @session.generic_objects
   @generic_objects[0].identifier
   
-  # Getting Specific Generic Object
+  # Specific Generic Object
   @generic_object = @session.generic_object("4c370c11ae2b7b418e00232c")
   @generic_object.identifier
   
