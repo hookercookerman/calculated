@@ -10,6 +10,10 @@ a ruby way.
 
 Please visit "http://blog.carboncalculated.com" For Developer examples and information
 
+DOCS
+
+http://rdoc.info/projects/hookercookerman/calculated/blob/dd7ed3f73d987492486abb7091f6321e8b04443e
+
 == Getting Started
 
 Get An API KEY
