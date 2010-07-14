@@ -62,7 +62,7 @@ Now that you have a session you can call methods on the session to interact with
 
 *Example
 
-Very simple materials Calculator
+===Very simple materials Calculator
 
 Lets first got to the calculator on the browser (click here to see what I mean http://browser.carboncalculated.com/calculators/4bab7e4ff78b122cdd000004/computations/4bab7e64f78b122cdd000005"
 
