@@ -209,7 +209,10 @@ super easy drop downs to create easy filter; the blog should help explain this f
 This is the crux of the api; this is where co2, co2e etc results can be found;
 
 The best and easiest way to found what information you need to get a valid answer is using the browser["http://browser.carboncalculated.com"]
-Once you have found what parameters you need to send you can then do exactly that
+Once you have found what parameters you need to send you can then do exactly that;
+
+A Answer Object will give you vaste information on what it used to get the answer; You will be told the all the objects that were used in the calculation
+all the used_formula_inputs and the sources that where used to gain the information to make the calculation even possible. 
     
     
     @answer = @session.answer_from_computation("4bab7e64f78b122cdd000005", {"material_category"=>"4bf42d8046a95925b5000efb", "type_of_material"=>"4bf42d8046a95925b5000f40", "material"=>"4bf42d8046a95925b5000f2a", "amount_of_material"=>"10", "formula_input_name"=>"emissions_by_kg"})
@@ -239,7 +242,16 @@ If you don send the correct parameters in an answer you will be told where you a
   property :answer_set_id # [String]
   property :source # [Calculated::Models::Source]
   property :errors # [Hash]
+  
+== Source Object
 
+    # properties
+    property :id # [String]
+    property :description # [String]
+    property :main_source_ids # [Array<String>]
+    property :external_url # [String]
+    property :wave_id # [String]
+    
 == Bugs and Feedback
 
 If you discover any bugs or want to drop a line
