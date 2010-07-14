@@ -14,6 +14,10 @@ DOCS
 
 http://rdoc.info/projects/hookercookerman/calculated/blob/dd7ed3f73d987492486abb7091f6321e8b04443e
 
+Super Simple Example Apps Using the API
+
+http://miniapps.carboncalculated.com/
+
 == Getting Started
 
 Get An API KEY
