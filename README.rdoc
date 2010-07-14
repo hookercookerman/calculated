@@ -8,7 +8,7 @@ a ruby way.
 * Idiomatic Ruby
 * Concrete classes and methods modelling CarbonCalculated data
 
-Please visit ["http://blog.carboncalculated.com"] For Developer examples and information
+Please visit "http://blog.carboncalculated.com" For Developer examples and information
 
 == Getting Started
 
@@ -47,7 +47,7 @@ This is overriding the defaults
     
 == Basic Usage
 
-Via using the "CarbonCalculated Browser"["http://browswer.carboncalculated.com"] you can easily see what is available for you to interact with in terms of 
+Via using the CarbonCalculated Browser http://browswer.carboncalculated.com you can easily see what is available for you to interact with in terms of 
 data and calculations;
 
 Now that you have a session you can call methods on the session to interact with carbon calculated api
