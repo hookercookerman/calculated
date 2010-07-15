@@ -162,26 +162,26 @@ Finding and using generic objects is a major part of the platform apart from the
 
 ##Generic Object (Object)##
 
-    # properties
-    property :id # [String]
-    property :template_name # [String]
-    property :identifier # [String]
-    property :characteristics # [Array<Calculated::Models::Characteristic>]
-    property :formula_inputs # [Array<Calculated::Models::FormulaInput>]
+      # properties
+      property :id # [String]
+      property :template_name # [String]
+      property :identifier # [String]
+      property :characteristics # [Array<Calculated::Models::Characteristic>]
+      property :formula_inputs # [Array<Calculated::Models::FormulaInput>]
     
 ##Formula Input Object##
 
-    # properties
-    property :id # [String]
-    property :values # [Hash]
-    property :name # [String]
-    property :base_unit # [String]
-    property :active_at # [Time] yes time
-    property :main_source_id # [String]
-    property :group_name # [String]
-    property :input_units # [String]
-    property :label_input_units # [String]
-    property :model_state # [String]
+      # properties
+      property :id # [String]
+      property :values # [Hash]
+      property :name # [String]
+      property :base_unit # [String]
+      property :active_at # [Time] yes time
+      property :main_source_id # [String]
+      property :group_name # [String]
+      property :input_units # [String]
+      property :label_input_units # [String]
+      property :model_state # [String]
     
 ##Relatable Category API##
 
@@ -197,41 +197,41 @@ super easy drop downs to create easy filter; the blog should help explain this f
   
   
   
-  # Getting related objects from an ARRAY OF Relatable Category IDS USED in intersecting the related objects
-  # therefore its a really cool way to get filtered results
-  #
-  # @param object_template_name ie "car", "material"
-  # @param relatable_category_ids # Array # 
-  result = @session.related_objects_from_relatable_categories("material", ["4bf42d8a46a95925b500199a"])
-  result["4bf42d8b46a95925b5001a0c"]  # Partial Board
+      # Getting related objects from an ARRAY OF Relatable Category IDS USED in intersecting the related objects
+      # therefore its a really cool way to get filtered results
+      #
+      # @param object_template_name ie "car", "material"
+      # @param relatable_category_ids # Array # 
+      result = @session.related_objects_from_relatable_categories("material", ["4bf42d8a46a95925b500199a"])
+      result["4bf42d8b46a95925b5001a0c"]  # Partial Board
   
   
   
   
   
-  # Getting Related Categories from a related category
-  #
-  # @param Relatable Category ID
-  # @param related_attribute
-  result = @session.related_categories_from_relatable_category("4bf42d8a46a95925b500199a", "material_type")
-  results["4bf42d8b46a95925b50019c7"] # hardboard
+      # Getting Related Categories from a related category
+      #
+      # @param Relatable Category ID
+      # @param related_attribute
+      result = @session.related_categories_from_relatable_category("4bf42d8a46a95925b500199a", "material_type")
+      results["4bf42d8b46a95925b50019c7"] # hardboard
   
   
 ##Relatable Category Object##
 
-    # properties
-    property :id # [String]
-    property :name # [String]
-    property :related_attribute # [String] 
-    property :related_object_name # [String]      
-    # @example 
-    #  "emission_source" => {
-    #   {
-    #       "4c349f6068fe5434960178c2" => "flaring and venting",
-    #       "4c349f6068fe54349601791f" => "fugitives",
-    #   }    
-    # }
-    property :related_categories # [Hash{name => <Hash{:id => identifier}}]
+      # properties
+      property :id # [String]
+      property :name # [String]
+      property :related_attribute # [String] 
+      property :related_object_name # [String]      
+      # @example 
+      #  "emission_source" => {
+      #   {
+      #       "4c349f6068fe5434960178c2" => "flaring and venting",
+      #       "4c349f6068fe54349601791f" => "fugitives",
+      #   }    
+      # }
+      property :related_categories # [Hash{name => <Hash{:id => identifier}}]
     
     
 ##Answer API##
@@ -245,42 +245,42 @@ A Answer Object will give you vaste information on what it used to get the answe
 all the used_formula_inputs and the sources that where used to gain the information to make the calculation even possible. 
     
     
-    @answer = @session.answer_from_computation("4bab7e64f78b122cdd000005", {"material_category"=>"4bf42d8046a95925b5000efb", "type_of_material"=>"4bf42d8046a95925b5000f40", "material"=>"4bf42d8046a95925b5000f2a", "amount_of_material"=>"10", "formula_input_name"=>"emissions_by_kg"})
-    @answer.calculations["co2"]["value"]
+      @answer = @session.answer_from_computation("4bab7e64f78b122cdd000005", {"material_category"=>"4bf42d8046a95925b5000efb", "type_of_material"=>"4bf42d8046a95925b5000f40", "material"=>"4bf42d8046a95925b5000f2a", "amount_of_material"=>"10", "formula_input_name"=>"emissions_by_kg"})
+      @answer.calculations["co2"]["value"]
     
 *Errors
 
 If you don send the correct parameters in an answer you will be told where you are going wrong
     
-    @answer = @session.answer_from_computation("4bab7e64f78b122cdd000005", {"material_category"=>"4bf42d8046a95925b5000efb", "type_of_material"=>"4bf42d8046a95925b5000f40", "material"=>"4bf42d8046a95925b5000f2a", "formula_input_name"=>"emissions_by_kg"})
-    @answer.valid? # false
+      @answer = @session.answer_from_computation("4bab7e64f78b122cdd000005", {"material_category"=>"4bf42d8046a95925b5000efb", "type_of_material"=>"4bf42d8046a95925b5000f40", "material"=>"4bf42d8046a95925b5000f2a", "formula_input_name"=>"emissions_by_kg"})
+      @answer.valid? # false
     
-    @answer.errors 
+      @answer.errors 
   
-      "amount_of_material" =>["can't be blank", "is not a number"]
+        "amount_of_material" =>["can't be blank", "is not a number"]
   
 ##Answer Object##
   
-  #   answer.calculations["co2"]["value"] == 10
-  #   answer.calculations["co2"]["units"] == "kg"
-  #
-  property :calculations # [Hash]
-  property :object_references # [Hash]
-  property :used_global_computations # [Hash]
-  property :calculator_id # [String]
-  property :computation_id # [String]
-  property :answer_set_id # [String]
-  property :source # [Calculated::Models::Source]
-  property :errors # [Hash]
+      #   answer.calculations["co2"]["value"] == 10
+      #   answer.calculations["co2"]["units"] == "kg"
+      #
+      property :calculations # [Hash]
+      property :object_references # [Hash]
+      property :used_global_computations # [Hash]
+      property :calculator_id # [String]
+      property :computation_id # [String]
+      property :answer_set_id # [String]
+      property :source # [Calculated::Models::Source]
+      property :errors # [Hash]
   
 ##Source Object##
 
-    # properties
-    property :id # [String]
-    property :description # [String]
-    property :main_source_ids # [Array<String>]
-    property :external_url # [String]
-    property :wave_id # [String]
+      # properties
+      property :id # [String]
+      property :description # [String]
+      property :main_source_ids # [Array<String>]
+      property :external_url # [String]
+      property :wave_id # [String]
     
 ##Bugs and Feedback##
 
