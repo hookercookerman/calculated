@@ -145,21 +145,20 @@ This is a list of car for instance CLICK http://browser.carboncalculated.com/obj
 
 Finding and using generic objects is a major part of the platform apart from the actual calculations themselves
   
-    # Finding generic objects
-    @generic_objects = @session.generic_objects
-    @generic_objects[0].identifier
+      # Finding generic objects
+      @generic_objects = @session.generic_objects
+      @generic_objects[0].identifier
+  
+
+      # Specific Generic Object
+      @generic_object = @session.generic_object("4c370c11ae2b7b418e00232c")
+      @generic_object.identifier
   
   
   
-    # Specific Generic Object
-    @generic_object = @session.generic_object("4c370c11ae2b7b418e00232c")
-    @generic_object.identifier
-  
-  
-  
-    # Getting just the "Formula Inputs" of a generic Object
-    @formula_inputs = @session.formula_inputs_for_generic_object("4c370c11ae2b7b418e00232c")
-    @formula_inputs[0].values
+      # Getting just the "Formula Inputs" of a generic Object
+      @formula_inputs = @session.formula_inputs_for_generic_object("4c370c11ae2b7b418e00232c")
+      @formula_inputs[0].values
 
 ##Generic Object (Object)##
 
