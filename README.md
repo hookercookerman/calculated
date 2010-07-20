@@ -129,11 +129,11 @@ used to filter to specific generic objects which you can then later be used in a
   
 ##Object Template Object##
 
-  property :id # [String]
-  property :template_name # [String]
-  property :identifier # [String]
-  property :characteristics # [Array<Calculated::Models::Characteristic>]
-  property :formula_inputs # [Array<Calculated::Models::FormulaInput>]
+    property :id # [String]
+    property :template_name # [String]
+    property :identifier # [String]
+    property :characteristics # [Array<Calculated::Models::Characteristic>]
+    property :formula_inputs # [Array<Calculated::Models::FormulaInput>]
   
 ##Generic Objects API##
 
