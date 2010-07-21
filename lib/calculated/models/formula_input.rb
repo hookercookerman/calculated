@@ -13,6 +13,7 @@ module Calculated
       property :input_units # [String]
       property :label_input_units # [String]
       property :model_state # [String]
+      property :source # holder of old data this is not used I repeat this is not used
           
     end
   end
